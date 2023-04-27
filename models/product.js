@@ -11,6 +11,18 @@ const fetchProductsData = callback => {
   });
 };
 
+const fetchProductDetail = (id, callback) => {
+  fs.readFile(dir, (error, data) => {
+    if (error) {
+      callback([]);
+    } else {
+      const product = JSON.parse(data);
+      const productItem = product.filter(item => item.id === id);
+      callback(productItem[0]);
+    }
+  });
+};
+
 module.exports = class Product {
   constructor(title, imageUrl, price, description) {
     this.title = title;
@@ -20,6 +32,7 @@ module.exports = class Product {
   }
 
   save() {
+    this.id = Math.random().toString();
     fetchProductsData(products => {
       products.push(this);
 
@@ -29,5 +42,9 @@ module.exports = class Product {
 
   static fetchAll(callback) {
     fetchProductsData(callback);
+  }
+
+  static fetchProduct(id, callback) {
+    fetchProductDetail(id, callback);
   }
 };

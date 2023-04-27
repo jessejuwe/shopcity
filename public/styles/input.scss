@@ -27,6 +27,10 @@
     @apply flex flex-col md:grid md:grid-cols-3 flex-wrap justify-center items-center gap-4 mt-4 md:ml-16;
   }
 
+  .product-detail {
+    @apply w-full flex flex-row items-center justify-center;
+  }
+
   .card {
     @apply shadow-md shadow-black/[26] h-full rounded-md;
   }
@@ -55,8 +59,16 @@
     @apply w-full h-full rounded-md;
   }
 
+  .card__image-single {
+    @apply w-[50%] h-[50%] m-auto rounded-md;
+  }
+
+  .card__image-single img {
+    @apply w-full h-full rounded-md;
+  }
+
   .card__actions {
-    @apply p-4 text-center;
+    @apply p-4 text-center flex items-center justify-center;
   }
 
   .card__actions button,
@@ -111,6 +123,10 @@
     @apply w-[30rem] max-w-[90%] m-auto;
   }
 
+  .single-product-item {
+    @apply w-full max-w-[95%];
+  }
+
   .product-item {
     @apply w-[20rem] max-w-[95%];
   }
@@ -159,7 +175,11 @@
   /** MOBILE */
 
   .mobile-nav {
-    @apply w-[30rem] h-screen max-w-[90%] fixed left-0 top-0 bg-white z-10 pt-8 pr-4 pb-4 pl-8 translate-x-full transition-all duration-[0.3s] ease-out;
+    @apply block md:hidden w-[30rem] h-screen max-w-[90%] fixed left-0 top-0 bg-white z-10 pt-8 pr-4 pb-4 pl-8 translate-x-full transition-all duration-[0.3s] ease-out;
+  }
+
+  .mobile-nav__logo {
+    @apply text-blue-600 font-bold text-lg;
   }
 
   .mobile-nav.open {
