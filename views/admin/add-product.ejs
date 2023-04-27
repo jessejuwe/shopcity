@@ -1,0 +1,28 @@
+<%- include('../partials/head.ejs') %>
+<body>
+  <%- include('../partials/nav.ejs') %>
+
+  <main>
+    <form class="product-form" action="/admin/add-product" method="POST">
+      <div class="form-control">
+        <input type="text" name="title" placeholder="Product Title" />
+        <input type="url" name="imageUrl" placeholder="Image URL" />
+        <input
+          type="number"
+          name="price"
+          placeholder="Product Price"
+          step=".01"
+        />
+        <textarea
+          maxlength="200"
+          rows="5"
+          title="Product Description"
+          name="description"
+          placeholder="Product Description"
+        ></textarea>
+        <button type="submit">Add Product</button>
+      </div>
+    </form>
+  </main>
+  <%- include('../partials/end.ejs') %>
+</body>

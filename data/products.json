@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Encyclopedia",
+    "imageUrl": "https://cdn.britannica.com/75/198075-050-CC756E73/editions-Encyclopaedia-Britannica.jpg",
+    "price": "100.00",
+    "description": "A book or set of books giving information on many subjects or on many aspects of one subject and typically arranged alphabetically."
+  },
+  {
+    "title": "Telescope",
+    "imageUrl": "https://www.cnet.com/a/img/resize/89cc11cf0e660ab630c018d3e80e7c1fce2dfb9f/hub/2020/08/21/12ecee85-f732-4d9f-a844-8f4eb0182235/telescopes2.jpg?auto=webp&fit=crop&height=900&width=1200",
+    "price": "4300.50",
+    "description": "A device used to observe distant objects by their emission, absorption, or reflection of electromagnetic radiation. It contains a really powerful lens."
+  },
+  {
+    "title": "Grand Piano",
+    "imageUrl": "https://i.pinimg.com/originals/36/c2/2f/36c22f0e5ce5675e107bba6e11be8fdf.jpg",
+    "price": "450.00",
+    "description": "A large piano whose strings are set horizontally to the ground. Grand pianos are used especially for giving concerts and making recordings."
+  }
+]
