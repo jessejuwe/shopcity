@@ -2,26 +2,23 @@
 <body>
   <%- include('../partials/nav.ejs') %>
 
-  <main>
-    <h1 class="main-header__heading text-center">Product Detail</h1>
-    <div class="product-detail">
-      <article class="card single-product-item">
-        <header class="card__header">
-          <h1 class="product__title"><%= product.title %></h1>
-        </header>
-        <div class="card__image-single">
-          <img src="<%= product.imageUrl %>" alt="<%= product.title %>" />
-        </div>
-        <div class="card__content">
-          <h2 class="product__price">$<%= product.price %></h2>
-          <p class="product__description"><%= product.description %></p>
-        </div>
+  <main class="centered">
+    <div class="product__detail">
+      <div class="product__content">
+        <h1 class="product__content-title"><%= product.title %></h1>
+        <h2 class="product__content-price">$<%= product.price %></h2>
+        <p class="product__content-description"><%= product.description %></p>
+
         <div class="card__actions">
           <form action="/add-to-cart" method="POST">
             <button class="btn" type="submit">Add to Cart</button>
           </form>
         </div>
-      </article>
+      </div>
+
+      <div class="product__image">
+        <img src="<%= product.imageUrl %>" alt="<%= product.title %>" />
+      </div>
     </div>
   </main>
   <%- include('../partials/end.ejs') %>

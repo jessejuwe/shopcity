@@ -23,12 +23,40 @@
 }
 
 @layer components {
+  .centered {
+    @apply text-center;
+  }
+
   .product-group {
     @apply flex flex-col md:grid md:grid-cols-3 flex-wrap justify-center items-center gap-4 mt-4 md:ml-16;
   }
 
-  .product-detail {
-    @apply w-full flex flex-row items-center justify-center;
+  .product__detail {
+    @apply w-full flex flex-row items-center justify-center gap-4;
+  }
+
+  .product__content {
+    @apply flex flex-col items-start justify-around;
+
+    .product__content-title {
+      @apply text-lg text-center capitalize font-semibold;
+    }
+
+    .product__content-price {
+      @apply text-center text-[#4d4d4d] mb-2;
+    }
+
+    .product__content-description {
+      @apply text-center text-sm font-medium;
+    }
+  }
+
+  .product__image {
+    @apply w-[50%] h-[50%] m-auto rounded-md;
+  }
+
+  .product__image img {
+    @apply w-full h-full rounded-md;
   }
 
   .card {
@@ -56,14 +84,6 @@
   }
 
   .card__image img {
-    @apply w-full h-full rounded-md;
-  }
-
-  .card__image-single {
-    @apply w-[50%] h-[50%] m-auto rounded-md;
-  }
-
-  .card__image-single img {
     @apply w-full h-full rounded-md;
   }
 

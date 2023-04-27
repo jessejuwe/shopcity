@@ -11,18 +11,6 @@ const fetchProductsData = callback => {
   });
 };
 
-const fetchProductDetail = (id, callback) => {
-  fs.readFile(dir, (error, data) => {
-    if (error) {
-      callback([]);
-    } else {
-      const product = JSON.parse(data);
-      const productItem = product.filter(item => item.id === id);
-      callback(productItem[0]);
-    }
-  });
-};
-
 module.exports = class Product {
   constructor(title, imageUrl, price, description) {
     this.title = title;
@@ -45,6 +33,9 @@ module.exports = class Product {
   }
 
   static fetchProduct(id, callback) {
-    fetchProductDetail(id, callback);
+    fetchProductsData(products => {
+      const product = products.find(item => item.id === id);
+      callback(product);
+    });
   }
 };
