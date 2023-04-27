@@ -37,18 +37,18 @@
 
   .product__content {
     @apply flex flex-col items-start justify-around;
+  }
 
-    .product__content-title {
-      @apply text-lg text-center capitalize font-semibold;
-    }
+  .product__content-title {
+    @apply text-lg text-center capitalize font-semibold;
+  }
 
-    .product__content-price {
-      @apply text-center text-[#4d4d4d] mb-2;
-    }
+  .product__content-price {
+    @apply text-center text-[#4d4d4d] mb-2;
+  }
 
-    .product__content-description {
-      @apply text-center text-sm font-medium;
-    }
+  .product__content-description {
+    @apply text-center text-sm font-medium;
   }
 
   .product__image {
@@ -195,7 +195,7 @@
   /** MOBILE */
 
   .mobile-nav {
-    @apply block md:hidden w-[30rem] h-screen max-w-[90%] fixed left-0 top-0 bg-white z-10 pt-8 pr-4 pb-4 pl-8 translate-x-full transition-all duration-[0.3s] ease-out;
+    @apply block md:hidden w-[30rem] h-screen max-w-[90%] fixed left-0 top-0 bg-white z-10 pt-8 pr-4 pb-4 pl-8 translate-x-full transition-all duration-[0.3s] ease-in;
   }
 
   .mobile-nav__logo {

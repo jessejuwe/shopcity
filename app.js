@@ -4,12 +4,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 // const expressHbs = require('express-handlebars');
 
-const rootDir = require('./utils/path');
+const rootDir = require('./src/utils/path');
 
-const adminData = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
+const adminData = require('./src/routes/admin');
+const shopRoutes = require('./src/routes/shop');
 
-const errorController = require('./controllers/error');
+const errorController = require('./src/controllers/error');
 
 const { get404 } = errorController;
 
@@ -31,7 +31,7 @@ const app = express();
 
 // configuring templating engine
 app.set('view engine', 'ejs'); // using ejs as the templating engine
-app.set('views', 'views');
+app.set('views', './src/views');
 
 // creating a middleware for parsing body
 app.use(bodyParser.urlencoded({ extended: false }));
