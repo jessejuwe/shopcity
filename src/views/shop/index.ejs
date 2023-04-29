@@ -19,7 +19,7 @@
           <p class="product__description"><%= product.description %></p>
         </div>
         <div class="card__actions">
-          <button class="btn">View Product</button>
+          <a href="/products/<%= product.id %>" class="btn">View Product</a>
         </div>
       </article>
       <% }) %>

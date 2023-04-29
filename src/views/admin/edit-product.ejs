@@ -2,6 +2,49 @@
 <body>
   <%- include('../partials/nav.ejs') %>
 
-  <main></main>
+  <main>
+    <form
+      class="product-form"
+      action="<% if (editMode) { %> /admin/edit-product <% } else { %> /admin/add-product <% } %>"
+      method="POST"
+    >
+      <div class="form-control">
+        <input
+          type="text"
+          name="title"
+          placeholder="Product Title"
+          value="<% if (editMode) { %> <%= product.title %> <% } %>"
+        />
+        <input
+          type="url"
+          name="imageUrl"
+          placeholder="Image URL"
+          value="<% if (editMode) { %> <%= product.imageUrl %> <% } %>"
+        />
+        <input
+          type="number"
+          name="price"
+          step=".10"
+          placeholder="Product Price"
+          value="<% if (editMode) { %> <%= parseFloat(product.price) %> <% } %>"
+        />
+        <textarea
+          maxlength="200"
+          rows="5"
+          title="Product Description"
+          name="description"
+          placeholder="Product Description"
+        >
+<% if (editMode) { %> <%= product.description %> <% } %></textarea
+        >
+        <% if (editMode) { %>
+        <input type="hidden" name="productId" value="<%= product.id %>" /> <% }
+        %>
+        <button type="submit">
+          <% if (editMode) { %> Edit Product <% } else { %> Add Product <% } %>
+        </button>
+      </div>
+    </form>
+  </main>
   <%- include('../partials/end.ejs') %>
 </body>

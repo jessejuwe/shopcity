@@ -2,6 +2,51 @@
 <body>
   <%- include('../partials/nav.ejs') %>
 
-  <main></main>
+  <main>
+    <% if (products.length > 0) { %>
+    <h1 class="main-header__heading">Your Cart</h1>
+    <div class="product-group">
+      <% products.forEach(product => { %>
+      <article class="card product-item">
+        <header class="card__header">
+          <h1 class="product__title"><%= product.productData.title %></h1>
+        </header>
+        <div class="card__image">
+          <img
+            src="<%= product.productData.imageUrl %>"
+            alt="<%= product.productData.title %>"
+          />
+        </div>
+        <div class="card__content">
+          <h2 class="product__price">
+            $<%= product.productData.price * product.qty %>
+          </h2>
+          <p class="product__description">
+            <%= product.productData.description %>
+          </p>
+          <p class="product__description font-bold">
+            Quantity: <%= product.qty %>
+          </p>
+        </div>
+        <div class="card__actions">
+          <a href="/products/<%= product.productData.id %>" class="btn"
+            >Details</a
+          >
+          <form action="/cart-delete-item" method="POST">
+            <input
+              type="hidden"
+              name="productId"
+              value="<%= product.productData.id %>"
+            />
+            <button class="btn delete" type="submit">Delete</button>
+          </form>
+        </div>
+      </article>
+      <% }) %>
+    </div>
+    <% } else { %>
+    <h2>No products found ...</h2>
+    <% } %>
+  </main>
   <%- include('../partials/end.ejs') %>
 </body>

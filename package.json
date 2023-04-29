@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
+    "start:css": "tailwindcss -i ./public/styles/input.scss -o ./public/styles/main.css --watch",
     "dev": "nodemon app.ts"
   },
   "author": "Jesse Juwe",
@@ -15,6 +16,7 @@
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-handlebars": "^7.0.7",
+    "mysql2": "^3.2.4",
     "pug": "^3.0.2"
   },
   "devDependencies": {
