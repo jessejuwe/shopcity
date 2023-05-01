@@ -6,28 +6,14 @@ const bodyParser = require('body-parser');
 
 const rootDir = require('./src/utils/path');
 
+const sequelize = require('./src/utils/database');
 const adminData = require('./src/routes/admin');
 const shopRoutes = require('./src/routes/shop');
-
 const errorController = require('./src/controllers/error');
 
 const { get404 } = errorController;
 
 const app = express();
-
-// registering a new templating engine for handlebars
-// app.engine(
-//   'hbs',
-//   expressHbs.engine({ extname: '.hbs', layoutsDir: './views/layouts' })
-// );
-
-// configuring templating engine
-// app.set('view engine', 'pug'); // using pug as the templating engine
-// app.set('views', 'views');
-
-// configuring templating engine
-// app.set('view engine', 'hbs'); // using hbs as the templating engine
-// app.set('views', './views');
 
 // configuring templating engine
 app.set('view engine', 'ejs'); // using ejs as the templating engine
@@ -45,4 +31,7 @@ app.use(shopRoutes); // middleware for out-sourced routes
 // creating a middleware for handling error pages
 app.use(get404);
 
-app.listen(3010);
+sequelize
+  .sync()
+  .then(() => app.listen(3010))
+  .catch(err => console.log(err));

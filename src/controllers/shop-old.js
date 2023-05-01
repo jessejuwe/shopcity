@@ -2,57 +2,40 @@ const Product = require('../models/product');
 const Cart = require('../models/cart');
 
 exports.getIndex = (req, res, next) => {
-  // Fetching data using MySQL (Sequelize)
-  Product.findAll()
-    .then(products => {
-      res.render('shop/index', {
-        products,
-        pageTitle: 'ShopCity',
-        path: '/',
-        hasProducts: products.length > 0,
-        shopIsActive: req.url === '/' ? 'active' : '',
-      });
+  // Fetching data using File System
+  Product.fetchAll(products =>
+    res.render('shop/index', {
+      products,
+      pageTitle: 'ShopCity',
+      path: '/',
+      hasProducts: products.length > 0,
+      shopIsActive: req.url === '/' ? 'active' : '',
     })
-    .catch(err => console.log(err));
+  );
 };
 
 exports.getProducts = (req, res, next) => {
-  // Fetching data using MySQL (Sequelize)
-  Product.findAll()
-    .then(products => {
-      res.render('shop/product-list', {
-        products,
-        pageTitle: 'All Products',
-        path: '/products',
-      });
+  // Fetching data using File System
+  Product.fetchAll(products =>
+    res.render('shop/product-list', {
+      products,
+      pageTitle: 'All Products',
+      path: '/products',
     })
-    .catch(err => console.log(err));
+  );
 };
 
 exports.getProduct = (req, res, next) => {
   const productId = req.params.productId;
 
-  // Fetching using MySQL (Sequelize)
-  Product.findByPk(productId)
-    .then(product => {
-      res.render('shop/product-detail', {
-        product,
-        pageTitle: product.title,
-        path: '/products',
-      });
-    })
-    .catch(err => console.log(err));
-
-  // Alternative
-  // Product.findAll({ where: { id: productId } })
-  //   .then(result => {
-  //     res.render('shop/product-detail', {
-  //       product: result[0],
-  //       pageTitle: result[0].title,
-  //       path: '/products',
-  //     });
-  //   })
-  //   .catch(err => console.log(err));
+  // Fetching using File System
+  Product.fetchProduct(productId, product => {
+    res.render('shop/product-detail', {
+      product,
+      pageTitle: product.title,
+      path: '/products',
+    });
+  });
 };
 
 exports.getCart = (req, res, next) => {

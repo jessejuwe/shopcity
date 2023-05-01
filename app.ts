@@ -2,14 +2,30 @@ import path from 'path';
 
 import express from 'express';
 import bodyParser from 'body-parser';
+import expressHbs from 'express-handlebars';
 
-const rootDir = require('./utils/path');
+import Product from './src/models/product';
+import sequelize from './src/utils/database';
+import rootDir from './src/utils/path';
+import errorController from './src/controllers/error';
+import adminData from './src/routes/admin';
+import shopRoutes from './src/routes/shop';
 
 const app = express();
 
-const adminData = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
-const errorController = require('./controllers/error');
+// registering a new templating engine for handlebars
+// app.engine(
+//   'hbs',
+//   expressHbs.engine({ extname: '.hbs', layoutsDir: './views/layouts' })
+// );
+
+// configuring templating engine
+// app.set('view engine', 'pug'); // using pug as the templating engine
+// app.set('views', 'views');
+
+// configuring templating engine
+// app.set('view engine', 'hbs'); // using hbs as the templating engine
+// app.set('views', './views');
 
 const { get404 } = errorController;
 
@@ -29,4 +45,7 @@ app.use(shopRoutes); // middleware for out-sourced routes
 // creating a middleware for handling error pages
 app.use(get404);
 
-app.listen(3010);
+sequelize
+  .sync()
+  .then(() => app.listen(3010))
+  .catch((err: any) => console.log(err));
