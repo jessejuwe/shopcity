@@ -3,46 +3,33 @@
   <%- include('../partials/nav.ejs') %>
 
   <main>
-    <% if (products.length > 0) { %>
+    <% if (hasProducts) { %>
     <h1 class="main-header__heading">Your Cart</h1>
-    <div class="product-group">
+    <ul class="product-group cart__item-list">
       <% products.forEach(product => { %>
-      <article class="card product-item">
-        <header class="card__header">
-          <h1 class="product__title"><%= product.productData.title %></h1>
-        </header>
-        <div class="card__image">
-          <img
-            src="<%= product.productData.imageUrl %>"
-            alt="<%= product.productData.title %>"
-          />
-        </div>
-        <div class="card__content">
-          <h2 class="product__price">
-            $<%= product.productData.price * product.qty %>
-          </h2>
-          <p class="product__description">
-            <%= product.productData.description %>
-          </p>
-          <p class="product__description font-bold">
-            Quantity: <%= product.qty %>
-          </p>
-        </div>
+      <li class="card product-item">
+        <h1 class="product__title"><%= product.title %></h1>
+        <p class="product__price">
+          Quantity: <%= product.cart_item.quantity %>
+        </p>
+        <h2 class="product__price">
+          Total Price: $<%= product.price * product.cart_item.quantity %>
+        </h2>
+
         <div class="card__actions">
-          <a href="/products/<%= product.productData.id %>" class="btn"
-            >Details</a
-          >
+          <a href="/products/<%= product.id %>" class="btn">Details</a>
           <form action="/cart-delete-item" method="POST">
-            <input
-              type="hidden"
-              name="productId"
-              value="<%= product.productData.id %>"
-            />
+            <input type="hidden" name="productId" value="<%= product.id %>" />
             <button class="btn delete" type="submit">Delete</button>
           </form>
         </div>
-      </article>
+      </li>
       <% }) %>
+    </ul>
+    <div class="card__actions centered">
+      <form action="/create-order" method="POST" class="cart__form">
+        <button class="btn order centered" type="submit">Place Order</button>
+      </form>
     </div>
     <% } else { %>
     <h2>No products found ...</h2>

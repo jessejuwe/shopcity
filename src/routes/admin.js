@@ -1,6 +1,6 @@
 const express = require('express');
 
-const adminController = require('../controllers/admin');
+const adminController = require('../controllers/mongoDB/admin');
 
 const {
   getAddProduct,
@@ -23,12 +23,12 @@ router.get('/add-product', getAddProduct);
 router.post('/add-product', postAddProduct);
 
 // creating a middleware ('admin/edit-product') ==> limited to GET
-router.get('/edit-product/:productId', getEditProduct);
+// router.get('/edit-product/:productId', getEditProduct);
 
 // creating a middleware ('admin/edit-product') ==> limited to GET
-router.post('/edit-product', postEditProduct);
+// router.post('/edit-product', postEditProduct);
 
 // creating a middleware ('admin/edit-product') ==> limited to GET
-router.post('/delete-product', postDeleteProduct);
+// router.post('/delete-product', postDeleteProduct);
 
 module.exports = { router };

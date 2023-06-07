@@ -4,8 +4,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import expressHbs from 'express-handlebars';
 
-import Product from './src/models/product';
-import sequelize from './src/utils/database';
 import rootDir from './src/utils/path';
 import errorController from './src/controllers/error';
 import adminData from './src/routes/admin';
@@ -44,8 +42,3 @@ app.use(shopRoutes); // middleware for out-sourced routes
 
 // creating a middleware for handling error pages
 app.use(get404);
-
-sequelize
-  .sync()
-  .then(() => app.listen(3010))
-  .catch((err: any) => console.log(err));

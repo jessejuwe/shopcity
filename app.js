@@ -6,11 +6,12 @@ const bodyParser = require('body-parser');
 
 const rootDir = require('./src/utils/path');
 
-const sequelize = require('./src/utils/database');
+const client = require('./src/utils/database');
 const adminData = require('./src/routes/admin');
 const shopRoutes = require('./src/routes/shop');
 const errorController = require('./src/controllers/error');
 
+const mongoConnect = client.mongoConnect;
 const { get404 } = errorController;
 
 const app = express();
@@ -25,13 +26,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // creating a middleware for static files (for importing files)
 app.use(express.static(path.join(rootDir, 'public')));
 
+// registering a middleware for storing currently logged in user to request
+app.use((req, res, next) => {
+  next();
+});
+
 app.use('/admin', adminData.router); // middleware for out-sourced routes
 app.use(shopRoutes); // middleware for out-sourced routes
 
 // creating a middleware for handling error pages
 app.use(get404);
 
-sequelize
-  .sync()
-  .then(() => app.listen(3010))
-  .catch(err => console.log(err));
+// MongoDB Connection
+mongoConnect(() => app.listen(3010));

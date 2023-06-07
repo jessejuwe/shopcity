@@ -1,6 +1,6 @@
 const express = require('express');
 
-const shopController = require('../controllers/shop');
+const shopController = require('../controllers/mongoDB/shop');
 
 const router = express.Router();
 
@@ -11,6 +11,7 @@ const {
   getCart,
   postCart,
   getOrders,
+  postOrders,
   getCheckout,
   postDeleteCartProduct,
 } = shopController;
@@ -35,6 +36,9 @@ router.post('/cart-delete-item', postDeleteCartProduct);
 
 // creating a middleware for serving orders page
 router.get('/orders', getOrders);
+
+// creating a middleware for serving orders page
+router.post('/create-order', postOrders);
 
 // creating a middleware for serving checkout page
 router.get('/checkout', getCheckout);
