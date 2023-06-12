@@ -17,6 +17,8 @@ let _db;
 const mongoConnect = callback => {
   MongoClient.connect(process.env.MONGO_CLIENT)
     .then(client => {
+      // TODO
+      // remove log
       console.log('Connected to MongoDB.');
       _db = client.db(); // connects to shopcity db
       callback();

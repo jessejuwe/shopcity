@@ -1,6 +1,7 @@
 const express = require('express');
 
-const shopController = require('../controllers/mongoDB/shop');
+const shopController = require('../controllers/mongoose/shop');
+// const shopController = require('../controllers/mongoDB/shop');
 
 const router = express.Router();
 
@@ -16,31 +17,31 @@ const {
   postDeleteCartProduct,
 } = shopController;
 
-// creating a middleware for serving index page
+// registering a middleware for serving index page (GET)
 router.get('/', getIndex);
 
-// creating a middleware for serving products page
+// registering a middleware for serving products page (GET)
 router.get('/products', getProducts);
 
-// creating a middleware for serving single product page
+// registering a middleware for serving single product page (GET)
 router.get('/products/:productId', getProduct);
 
-// creating a middleware for serving cart page (GET)
+// registering a middleware for serving cart page (GET)
 router.get('/cart', getCart);
 
-// creating a middleware for serving cart page (POST)
+// registering a middleware for adding to cart action (POST)
 router.post('/cart', postCart);
 
-// creating a middleware for serving cart page (POST)
+// registering a middleware for deleting from cart action (POST)
 router.post('/cart-delete-item', postDeleteCartProduct);
 
-// creating a middleware for serving orders page
+// registering a middleware for serving orders page (GET)
 router.get('/orders', getOrders);
 
-// creating a middleware for serving orders page
+// registering a middleware for adding new order (POST)
 router.post('/create-order', postOrders);
 
-// creating a middleware for serving checkout page
+// registering a middleware for serving checkout page (GET)
 router.get('/checkout', getCheckout);
 
 module.exports = router;

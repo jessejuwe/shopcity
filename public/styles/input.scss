@@ -125,7 +125,7 @@
 }
 
 .main-header__item-list {
-  @apply flex flex-row items-center justify-between gap-4 list-none;
+  @apply flex flex-row items-center justify-between gap-4 list-none transition-all duration-150 ease-in;
 }
 
 .main-header__item a {
@@ -134,6 +134,14 @@
 
 .main-header__item a.active {
   @apply text-[#dbc441];
+}
+
+.main-header__item button {
+  @apply capitalize no-underline text-red-500 font-medium hover:text-red-700 active:text-red-700;
+}
+
+.main-header__item button.active {
+  @apply text-red-700;
 }
 
 .main-header__heading {
@@ -214,7 +222,7 @@
 }
 
 .mobile-nav__item-list {
-  @apply list-none flex flex-col m-0 p-0;
+  @apply list-none flex flex-col m-0 p-0 transition-all duration-150 ease-in;
 }
 
 .mobile-nav__item {
@@ -229,6 +237,14 @@
   @apply bg-[#dbc441] text-white rounded-md;
 }
 
+.mobile-nav__item button {
+  @apply no-underline text-red-500 text-xl py-2 px-4 hover:bg-red-700 active:bg-red-700 hover:text-white active:text-white hover:rounded-md active:rounded-md transition-all duration-150 ease-in;
+}
+
+.mobile-nav__item button.active {
+  @apply bg-red-700 text-white rounded-md;
+}
+
 #side-menu-toggle {
   @apply flex md:hidden border border-solid border-white p-2 bg-transparent text-white cursor-pointer focus:outline-none active:text-[#ffeb3b] active:border-[#ffeb3b] hover:text-[#ffeb3b] hover:border-[#ffeb3b] rounded-sm transition-all duration-150 ease-in;
 }
@@ -238,6 +254,13 @@
 }
 
 /** CART */
+
 .cart__form {
   @apply w-[50%];
+}
+
+/** AUTH */
+
+.login-form {
+  @apply w-[30rem] max-w-[90%] m-auto mt-14;
 }
