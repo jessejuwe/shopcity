@@ -5,11 +5,20 @@
   <main>
     <form class="login-form" action="/login" method="POST">
       <div class="form-control">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
         <input type="email" name="email" placeholder="Email" />
         <input type="password" name="password" placeholder="Password" />
         <button type="submit">Login</button>
       </div>
     </form>
+
+    <div class="centered">
+      <a href="/reset-password" class="reset centered">Forgot Password</a>
+    </div>
+
+    <% if (errorMessage) { %>
+    <div class="user-message error"><%= errorMessage %></div>
+    <% } %>
   </main>
   <%- include('../partials/end.ejs') %>
 </body>

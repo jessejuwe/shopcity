@@ -2,8 +2,17 @@ const express = require('express');
 
 const authController = require('../controllers/mongoose/auth');
 
-const { getLogin, postLogin, postLogout, getSignup, postSignup } =
-  authController;
+const {
+  getLogin,
+  postLogin,
+  postLogout,
+  getSignup,
+  postSignup,
+  getReset,
+  postReset,
+  getNewPassword,
+  postNewPassword,
+} = authController;
 
 const router = express.Router();
 
@@ -21,5 +30,17 @@ router.get('/signup', getSignup);
 
 // registering a middleware for signup action (POST)
 router.post('/signup', postSignup);
+
+// registering a middleware for serving reset password page (GET)
+router.get('/reset-password', getReset);
+
+// registering a middleware for reset password action (POST)
+router.post('/reset-password', postReset);
+
+// registering a middleware for serving new password page (GET)
+router.get('/reset-password/:token', getNewPassword);
+
+// registering a middleware for serving new password page (GET)
+router.post('/new-password', postNewPassword);
 
 module.exports = router;

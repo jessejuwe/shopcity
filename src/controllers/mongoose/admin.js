@@ -1,15 +1,16 @@
 const Product = require('../../models/mongoose/product'); // importing the Product model
 
 exports.getProducts = (req, res, next) => {
+  const userID = req.user._id;
+
   // Fetching data using Mongoose
-  Product.find()
+  Product.find({ userID })
     .populate('userID')
     .then(products => {
       res.render('admin/products', {
         products,
         pageTitle: 'Admin Products',
         path: '/admin/products',
-        isLoggedIn: req.session.isLoggedIn,
       });
     })
     .catch(err => {
@@ -25,7 +26,6 @@ exports.getAddProduct = (req, res, next) => {
     path: '/admin/add-product',
     adminIsActive,
     editMode: false,
-    isLoggedIn: req.session.isLoggedIn,
   };
 
   res.render('admin/edit-product', options);
@@ -62,7 +62,6 @@ exports.getEditProduct = (req, res, next) => {
         pageTitle: 'Edit Product',
         path: '/admin/edit-product',
         editMode,
-        isLoggedIn: req.session.isLoggedIn,
       };
 
       res.render('admin/edit-product', options);
@@ -79,26 +78,28 @@ exports.postEditProduct = (req, res, next) => {
 
   Product.findById(_id)
     .then(product => {
-      if (!product) {
-        console.log('Product not found.');
-        return;
-      }
+      const prodID = product.userID.toString();
+      const userID = req.user._id.toString();
+
+      if (!product) return res.redirect('/');
+
+      if (prodID !== userID) return res.redirect('/');
 
       product.title = title;
       product.imageUrl = imageUrl;
       product.price = price;
       product.description = description;
 
-      return product.save();
+      return product.save().then(() => res.redirect('/admin/products'));
     })
-    .then(() => res.redirect('/admin/products'))
     .catch(err => console.log(err));
 };
 
 exports.postDeleteProduct = (req, res, next) => {
   const _id = req.body.productId;
+  const userID = req.user._id;
 
-  Product.findByIdAndDelete(_id)
+  Product.deleteOne({ _id, userID })
     .then(() => res.redirect('/admin/products'))
     .catch(err => console.log(err));
 };

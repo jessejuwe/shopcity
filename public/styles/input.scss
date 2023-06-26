@@ -22,6 +22,22 @@
   }
 }
 
+.reset {
+  @apply text-sm hover:underline transition text-[#dbc441] pt-4 italic;
+}
+
+.user-message {
+  @apply text-gray-900 text-center w-[30%] font-semibold text-sm mt-4 px-1 py-2 bg-blue-300 rounded shadow m-auto border border-solid border-blue-600;
+}
+
+.error {
+  @apply border-red-600 bg-red-300 text-red-600;
+}
+
+.success {
+  @apply border-green-600 bg-green-300 text-green-600;
+}
+
 .centered {
   @apply text-center;
 }
@@ -200,7 +216,7 @@
 }
 
 .form-control button {
-  @apply text-white font-semibold bg-[#00695c] cursor-pointer hover:bg-[#6e6e6e] active:bg-[#6e6e6e];
+  @apply text-white font-medium bg-[#00695c] cursor-pointer hover:bg-[#6e6e6e] active:bg-[#6e6e6e];
 }
 
 /** MOBILE */

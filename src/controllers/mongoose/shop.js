@@ -7,11 +7,10 @@ exports.getIndex = (req, res, next) => {
     .then(products => {
       res.render('shop/index', {
         products,
-        pageTitle: 'ShopCity',
+        pageTitle: 'Shop City',
         path: '/',
         hasProducts: products.length > 0,
         shopIsActive: req.url === '/' ? 'active' : '',
-        isLoggedIn: req.session.isLoggedIn,
       });
     })
     .catch(err => console.log(err));
@@ -25,7 +24,6 @@ exports.getProducts = (req, res, next) => {
         products,
         pageTitle: 'All Products',
         path: '/products',
-        isLoggedIn: req.session.isLoggedIn,
       });
     })
     .catch(err => console.log(err));
@@ -41,7 +39,6 @@ exports.getProduct = (req, res, next) => {
         product,
         pageTitle: product.title,
         path: '/products',
-        isLoggedIn: req.session.isLoggedIn,
       });
     })
     .catch(err => console.log(err));
@@ -58,7 +55,6 @@ exports.getCart = (req, res, next) => {
         hasProducts: products.length > 0,
         pageTitle: 'Your Cart',
         path: '/cart',
-        isLoggedIn: req.session.isLoggedIn,
       });
     })
     .catch(err => console.log(err));
@@ -90,7 +86,6 @@ exports.getOrders = (req, res, next) => {
         hasOrders: orders.length > 0,
         pageTitle: 'Your Order',
         path: '/orders',
-        isLoggedIn: req.session.isLoggedIn,
       });
     })
     .catch(err => console.log(err));
@@ -100,9 +95,9 @@ exports.postOrders = (req, res, next) => {
   req.user
     .populate('cart.items.productID')
     .then(userInfo => {
-      const username = req.user.username;
+      const email = req.user.email;
       const userID = req.user._id;
-      const user = { username, userID };
+      const user = { email, userID };
 
       const products = userInfo.cart.items.map(item => ({
         product: { ...item.productID._doc },
@@ -126,6 +121,5 @@ exports.getCheckout = (req, res, next) => {
   res.render('shop/checkout', {
     pageTitle: 'Checkout',
     path: '/checkout',
-    isLoggedIn: req.session.isLoggedIn,
   });
 };

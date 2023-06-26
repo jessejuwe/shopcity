@@ -5,6 +5,8 @@ const Schema = mongoose.Schema;
 const dataShape = {
   email: { type: String, required: true },
   password: { type: String, required: true },
+  resetToken: String,
+  tokenExpiration: Date,
   cart: {
     items: [
       {

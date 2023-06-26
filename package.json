@@ -12,8 +12,11 @@
   "author": "Jesse Juwe",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
+    "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^3.1.1",
+    "csurf": "^1.11.0",
     "dotenv": "^16.1.4",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
@@ -22,6 +25,9 @@
     "mongodb": "^5.6.0",
     "mongoose": "^7.2.2",
     "mysql2": "^3.2.4",
+    "nodemailer": "^6.9.3",
+    "nodemailer-postmark-transport": "^5.2.1",
+    "postmark": "^3.0.18",
     "pug": "^3.0.2",
     "sequelize": "^6.31.0"
   },

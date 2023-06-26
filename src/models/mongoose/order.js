@@ -10,7 +10,7 @@ const dataShape = {
     },
   ],
   user: {
-    username: { type: String, required: true },
+    email: { type: String, required: true },
     userID: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
   },
   totalPrice: { type: Number, required: true },

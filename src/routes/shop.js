@@ -1,7 +1,7 @@
 const express = require('express');
 
 const shopController = require('../controllers/mongoose/shop');
-// const shopController = require('../controllers/mongoDB/shop');
+const isAuth = require('../middleware/is-auth');
 
 const router = express.Router();
 
@@ -27,21 +27,21 @@ router.get('/products', getProducts);
 router.get('/products/:productId', getProduct);
 
 // registering a middleware for serving cart page (GET)
-router.get('/cart', getCart);
+router.get('/cart', isAuth, getCart);
 
 // registering a middleware for adding to cart action (POST)
-router.post('/cart', postCart);
+router.post('/cart', isAuth, postCart);
 
 // registering a middleware for deleting from cart action (POST)
-router.post('/cart-delete-item', postDeleteCartProduct);
+router.post('/cart-delete-item', isAuth, postDeleteCartProduct);
 
 // registering a middleware for serving orders page (GET)
-router.get('/orders', getOrders);
+router.get('/orders', isAuth, getOrders);
 
 // registering a middleware for adding new order (POST)
-router.post('/create-order', postOrders);
+router.post('/create-order', isAuth, postOrders);
 
 // registering a middleware for serving checkout page (GET)
-router.get('/checkout', getCheckout);
+router.get('/checkout', isAuth, getCheckout);
 
 module.exports = router;

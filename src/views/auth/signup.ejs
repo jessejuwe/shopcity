@@ -4,6 +4,7 @@
 
   <main>
     <form class="login-form" action="/signup" method="POST">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <div class="form-control">
         <input type="email" name="email" placeholder="Email" />
         <input type="password" name="password" placeholder="Password" />
@@ -15,6 +16,10 @@
         <button type="submit">Sign up</button>
       </div>
     </form>
+
+    <% if (errorMessage) { %>
+    <div class="user-message error"><%= errorMessage %></div>
+    <% } %>
   </main>
   <%- include('../partials/end.ejs') %>
 </body>
