@@ -1,0 +1,19 @@
+<%- include('../partials/head.ejs') %>
+<body>
+  <%- include('../partials/nav.ejs') %>
+
+  <main>
+    <form class="login-form" action="/reset-password" method="POST">
+      <div class="form-control">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <input type="email" name="email" placeholder="Email" />
+        <button type="submit">Reset password</button>
+      </div>
+    </form>
+
+    <% if (errorMessage) { %>
+    <div class="user-message error"><%= errorMessage %></div>
+    <% } %>
+  </main>
+  <%- include('../partials/end.ejs') %>
+</body>
