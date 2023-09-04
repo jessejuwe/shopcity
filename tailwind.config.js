@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        clashDisplay: ['"Clash Display"', 'sans-serif'],
         openSans: ['"Open Sans"', 'sans-serif'],
         manrope: ['Manrope', 'sans-serif'],
       },
