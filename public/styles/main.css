@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400&display=swap');
+
 /*
 ! tailwindcss v3.3.1 | MIT License | https://tailwindcss.com
 */
@@ -432,7 +434,7 @@ body{
   margin: 0px;
   overflow-x: hidden;
   padding: 0px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Clash Display", sans-serif;
 }
 
 main{
@@ -443,6 +445,12 @@ main{
 p{
   text-transform: capitalize;
   font-style: italic;
+}
+
+h1{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
 }
 
 *, ::before, ::after{
@@ -539,12 +547,69 @@ p{
   --tw-backdrop-sepia:  ;
 }
 
+.visible{
+  visibility: visible;
+}
+
 .static{
   position: static;
 }
 
+.fixed{
+  position: fixed;
+}
+
+.absolute{
+  position: absolute;
+}
+
+.relative{
+  position: relative;
+}
+
+.block{
+  display: block;
+}
+
+.inline-block{
+  display: inline-block;
+}
+
+.inline{
+  display: inline;
+}
+
+.table{
+  display: table;
+}
+
+.contents{
+  display: contents;
+}
+
 .hidden{
   display: none;
+}
+
+.grow{
+  flex-grow: 1;
+}
+
+.resize{
+  resize: both;
+}
+
+.border{
+  border-width: 1px;
+}
+
+.italic{
+  font-style: italic;
+}
+
+.blur{
+  --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .filter{
@@ -619,20 +684,14 @@ p{
 
 .product-group{
   margin-top: 1rem;
+  margin-bottom: 1rem;
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  flex: 1 1 auto;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-}
-
-@media (min-width: 768px){
-  .product-group{
-    margin-left: 4rem;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+  gap: 2rem;
 }
 
 .product__detail{
@@ -722,7 +781,6 @@ p{
 }
 
 .card{
-  height: 100%;
   border-radius: 0.375rem;
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
@@ -752,13 +810,12 @@ p{
 
 .card__image{
   margin: auto;
-  height: 40%;
   width: 80%;
   border-radius: 0.375rem;
 }
 
 .card__image img{
-  height: 100%;
+  height: 11rem;
   width: 100%;
   border-radius: 0.375rem;
 }
@@ -862,7 +919,7 @@ p{
 }
 
 .order{
-  width: 100%;
+  width: 50%;
   cursor: pointer;
   border-radius: 0.25rem;
   border-width: 1px;
@@ -992,6 +1049,9 @@ p{
 }
 
 .main-header__heading{
+  margin: auto;
+  width: 100%;
+  text-align: center;
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
@@ -1014,6 +1074,7 @@ p{
 .product-item{
   width: 20rem;
   max-width: 95%;
+  text-align: center;
 }
 
 .product__title{
@@ -1024,11 +1085,35 @@ p{
   text-transform: capitalize;
 }
 
+.product__id{
+  margin-bottom: 0.5rem;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgb(77 77 77 / var(--tw-text-opacity));
+}
+
 .product__price{
   margin-bottom: 0.5rem;
   text-align: center;
   --tw-text-opacity: 1;
   color: rgb(77 77 77 / var(--tw-text-opacity));
+}
+
+.product__invoice{
+  margin-bottom: 1rem;
+  width: 100%;
+  text-align: center;
+  text-transform: capitalize;
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: linear;
+}
+
+.product__invoice:hover{
+  text-decoration-line: underline;
 }
 
 .product__description{
@@ -1066,6 +1151,16 @@ p{
   padding-bottom: 0.75rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.form-control input.invalid,
+.form-control textarea.invalid{
+  border-width: 1px;
+  border-style: solid;
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
 
 .form-control input::-moz-placeholder, .form-control textarea::-moz-placeholder{
@@ -1324,4 +1419,61 @@ p{
   margin-top: 3.5rem;
   width: 30rem;
   max-width: 90%;
+}
+
+/** PAGINATION */
+
+.pagination{
+  margin-top: 1.5rem;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.pagination a{
+  cursor: pointer;
+  border-radius: 9999px;
+  border-width: 1px;
+  border-style: solid;
+  --tw-border-opacity: 1;
+  border-color: rgb(110 110 110 / var(--tw-border-opacity));
+  padding: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(0 105 92 / var(--tw-text-opacity));
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: linear;
+}
+
+.pagination a:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(110 110 110 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.pagination a:active{
+  --tw-bg-opacity: 1;
+  background-color: rgb(110 110 110 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.pagination p{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(0 105 92 / var(--tw-text-opacity));
+}
+
+.pagination a.active{
+  --tw-bg-opacity: 1;
+  background-color: rgb(110 110 110 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }

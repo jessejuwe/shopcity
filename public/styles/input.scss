@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,7 +11,7 @@
   }
 
   body {
-    @apply p-0 m-0 overflow-x-hidden font-openSans;
+    @apply p-0 m-0 overflow-x-hidden font-clashDisplay;
   }
 
   main {
@@ -19,6 +20,10 @@
 
   p {
     @apply capitalize italic;
+  }
+
+  h1 {
+    @apply font-semibold text-xl;
   }
 }
 
@@ -43,7 +48,7 @@
 }
 
 .product-group {
-  @apply flex flex-col md:grid md:grid-cols-3 flex-wrap justify-center items-center gap-4 mt-4 md:ml-16;
+  @apply flex flex-auto flex-wrap justify-center items-center gap-8 my-4 w-full;
 }
 
 .product__detail {
@@ -75,7 +80,7 @@
 }
 
 .card {
-  @apply shadow-md shadow-black/[26] h-full rounded-md;
+  @apply shadow-md shadow-black/[26] rounded-md;
 }
 
 .card__content {
@@ -95,11 +100,11 @@
 }
 
 .card__image {
-  @apply w-[80%] h-[40%] m-auto rounded-md;
+  @apply w-[80%] m-auto rounded-md;
 }
 
 .card__image img {
-  @apply w-full h-full rounded-md;
+  @apply w-full h-44 rounded-md;
 }
 
 .card__actions {
@@ -124,7 +129,7 @@
 }
 
 .order {
-  @apply font-[inherit] border border-solid border-blue-600 text-white bg-blue-600 rounded cursor-pointer hover:bg-blue-800 active:bg-blue-800 px-4 w-full;
+  @apply font-[inherit] border border-solid border-blue-600 text-white bg-blue-600 rounded cursor-pointer hover:bg-blue-800 active:bg-blue-800 px-4 w-2/4;
 }
 
 /** MAIN */
@@ -161,7 +166,7 @@
 }
 
 .main-header__heading {
-  @apply font-bold text-xl uppercase;
+  @apply font-bold text-xl uppercase w-full m-auto text-center;
 }
 
 /** PRODUCT */
@@ -175,15 +180,23 @@
 }
 
 .product-item {
-  @apply w-[20rem] max-w-[95%];
+  @apply w-[20rem] max-w-[95%] text-center;
 }
 
 .product__title {
   @apply text-lg text-center capitalize font-semibold;
 }
 
+.product__id {
+  @apply text-center text-[#4d4d4d] mb-2;
+}
+
 .product__price {
   @apply text-center text-[#4d4d4d] mb-2;
+}
+
+.product__invoice {
+  @apply w-full text-center text-blue-600 mb-4 hover:underline transition-all ease-linear capitalize;
 }
 
 .product__description {
@@ -204,6 +217,10 @@
 
 .form-control input {
   @apply bg-gray-300 py-3 px-2;
+}
+.form-control input.invalid,
+.form-control textarea.invalid {
+  @apply border border-solid border-red-500 bg-red-200;
 }
 
 .form-control input::placeholder,
@@ -279,4 +296,21 @@
 
 .login-form {
   @apply w-[30rem] max-w-[90%] m-auto mt-14;
+}
+
+/** PAGINATION */
+.pagination {
+  @apply w-full text-center font-medium gap-4 flex items-center justify-center mt-6;
+}
+
+.pagination a {
+  @apply text-[#00695c] cursor-pointer hover:text-white hover:bg-[#6e6e6e] active:text-white active:bg-[#6e6e6e] border border-solid border-[#6e6e6e] rounded-full p-2 transition-all ease-linear;
+}
+
+.pagination p {
+  @apply text-[#00695c] text-lg;
+}
+
+.pagination a.active {
+  @apply text-white bg-[#6e6e6e];
 }
