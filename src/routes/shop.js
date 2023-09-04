@@ -15,6 +15,7 @@ const {
   postOrders,
   getCheckout,
   postDeleteCartProduct,
+  getInvoice,
 } = shopController;
 
 // registering a middleware for serving index page (GET)
@@ -37,6 +38,9 @@ router.post('/cart-delete-item', isAuth, postDeleteCartProduct);
 
 // registering a middleware for serving orders page (GET)
 router.get('/orders', isAuth, getOrders);
+
+// registering a middleware for downloading invoice (GET)
+router.get('/orders/:orderId', isAuth, getInvoice);
 
 // registering a middleware for adding new order (POST)
 router.post('/create-order', isAuth, postOrders);
