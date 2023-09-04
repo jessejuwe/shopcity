@@ -10,8 +10,9 @@
       <li class="card product-item">
         <ul>
           <li>
-            <h5 class="product__price">Order: #<%= order._id %></h5>
+            <h5 class="product__id">Order: #<%= order._id %></h5>
           </li>
+
           <% order.products.forEach(prod => { %>
           <li>
             <h1 class="product__title">
@@ -22,6 +23,11 @@
             </h2>
           </li>
           <% }) %>
+          <li>
+            <a href="/orders/<%= order._id %>" class="product__invoice"
+              >View Invoice</a
+            >
+          </li>
         </ul>
       </li>
       <% }) %>

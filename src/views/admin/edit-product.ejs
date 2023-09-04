@@ -7,6 +7,7 @@
       class="product-form"
       action="<% if (editMode) { %> /admin/edit-product <% } else { %> /admin/add-product <% } %>"
       method="POST"
+      enctype="multipart/form-data"
     >
       <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <div class="form-control">
@@ -14,28 +15,40 @@
           type="text"
           name="title"
           placeholder="Product Title"
-          value="<% if (editMode) { %> <%= product.title %> <% } %>"
+          value="<% if (editMode || hasError) { %> <%= product.title %> <% } %>"
+          class="<%= validationErrors.find(e => e.path === 'title') ? 'invalid' : '' %>"
         />
         <input
+          type="file"
+          name="image"
+          id="image"
+          placeholder="Pick an image"
+        />
+        <!-- <input
           type="url"
           name="imageUrl"
           placeholder="Image URL"
-          value="<% if (editMode) { %> <%= product.imageUrl %> <% } %>"
-        />
+          value="<% if (editMode || hasError) { %> <%= product.imageUrl %> <% } %>"
+          class="<%= validationErrors.find(e => e.path === 'imageUrl') ? 'invalid' : '' %>"
+        /> -->
         <input
-          type="text"
+          type="number"
+          step="0.01"
           name="price"
+          id="price"
           placeholder="Product Price"
-          value="<% if (editMode) { %> <%= product.price %> <% } %>"
+          value="<% if (editMode || hasError) { %> <%= product.price %> <% } %>"
+          class="<%= validationErrors.find(e => e.path === 'price') ? 'invalid' : '' %>"
         />
         <textarea
-          maxlength="200"
+          maxlength="100"
           rows="5"
           title="Product Description"
           name="description"
           placeholder="Product Description"
+          class="<%= validationErrors.find(e => e.path === 'description') ? 'invalid' : '' %>"
         >
-<% if (editMode) { %> <%= product.description %> <% } %></textarea
+<% if (editMode  || hasError) { %> <%= product.description %> <% } %></textarea
         >
         <% if (editMode) { %>
         <input type="hidden" name="productId" value="<%= product._id %>" /> <% }
@@ -45,6 +58,10 @@
         </button>
       </div>
     </form>
+
+    <% if (errorMessage) { %>
+    <div class="user-message error"><%= errorMessage %></div>
+    <% } %>
   </main>
   <%- include('../partials/end.ejs') %>
 </body>

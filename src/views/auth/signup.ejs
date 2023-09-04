@@ -3,15 +3,29 @@
   <%- include('../partials/nav.ejs') %>
 
   <main>
-    <form class="login-form" action="/signup" method="POST">
+    <form class="login-form" action="/signup" method="POST" novalidate>
       <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <div class="form-control">
-        <input type="email" name="email" placeholder="Email" />
-        <input type="password" name="password" placeholder="Password" />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value="<%= oldInput.email %>"
+          class="<%= validationErrors.find(e => e.path === 'email') ? 'invalid' : '' %>"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value="<%= oldInput.pwd %>"
+          class="<%= validationErrors.find(e => e.path === 'password') ? 'invalid' : '' %>"
+        />
         <input
           type="password"
           name="confirmPassword"
           placeholder="Confirm Password"
+          value="<%= oldInput.confirmPwd %>"
+          class="<%= validationErrors.find(e => e.path === 'confirmPassword') ? 'invalid' : '' %>"
         />
         <button type="submit">Sign up</button>
       </div>
