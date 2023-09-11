@@ -1,5 +1,4 @@
 const path = require('path');
-const https = require('https');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -36,8 +35,8 @@ const store = new MongoDBStore({
 // prettier-ignore
 const accessLog = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
 
-const key = fs.readFileSync('server.key');
-const cert = fs.readFileSync('server.cert');
+// const key = fs.readFileSync('server.key');
+// const cert = fs.readFileSync('server.cert');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
