@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
+    "start": "node app.js",
+    "start-server": "node app.js",
+    "start:dev": "nodemon app.js",
     "start:css": "tailwindcss -i ./public/styles/input.scss -o ./public/styles/main.css --watch",
     "dev": "nodemon app.ts"
   },
@@ -14,6 +16,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
+    "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^3.1.1",
     "csurf": "^1.11.0",
@@ -24,8 +27,10 @@
     "express-session": "^1.17.3",
     "express-validator": "^7.0.1",
     "hash-it": "^6.0.0",
+    "helmet": "^7.0.0",
     "mongodb": "^5.6.0",
     "mongoose": "^7.2.2",
+    "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.2.4",
     "nodemailer": "^6.9.3",
