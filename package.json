@@ -8,8 +8,7 @@
     "start": "node app.js",
     "start-server": "node app.js",
     "start:dev": "nodemon app.js",
-    "start:css": "tailwindcss -i ./public/styles/input.scss -o ./public/styles/main.css --watch",
-    "dev": "nodemon app.ts"
+    "start:css": "tailwindcss -i ./public/styles/input.scss -o ./public/styles/main.css --watch"
   },
   "author": "Jesse Juwe",
   "license": "ISC",
