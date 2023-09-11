@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -157,8 +158,3 @@ const startConnection = async () => {
 };
 
 startConnection();
-
-// mongoose
-//   .connect(process.env.MONGO_CLIENT)
-//   .then(() => app.listen(process.env.PORT || 3000))
-//   .catch(err => console.log(err));
