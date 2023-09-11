@@ -1,4 +1,5 @@
 const path = require('path');
+const https = require('https');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -9,7 +10,9 @@ const csrf = require('csurf');
 const flash = require('connect-flash');
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
-const hash = require('hash-it');
+const helmet = require('helmet');
+const compression = require('compression');
+const morgan = require('morgan');
 
 require('dotenv').config();
 
@@ -23,13 +26,18 @@ const User = require('./src/models/mongoose/user');
 const { get404, get500 } = errorController;
 
 const app = express();
+const csrfProtection = csrf();
 
 const store = new MongoDBStore({
   uri: process.env.MONGO_CLIENT,
   collection: 'sessions',
 });
 
-const csrfProtection = csrf();
+// prettier-ignore
+const accessLog = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+
+const key = fs.readFileSync('server.key');
+const cert = fs.readFileSync('server.cert');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -38,7 +46,6 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     try {
       cb(null, `${uuidv4()}-${file.originalname}`);
-      // cb(null, `${hash({ name: file.originalname })}-${file.originalname}`);
     } catch (err) {
       throw new Error(err);
     }
@@ -60,6 +67,10 @@ const fileFilter = (req, file, cb) => {
 // configuring templating engine
 app.set('view engine', 'ejs'); // using ejs as the templating engine
 app.set('views', './src/views');
+
+app.use(helmet());
+app.use(compression());
+app.use(morgan('combined', { stream: accessLog }));
 
 // registering a middleware for parsing body (form data as text)
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -133,7 +144,22 @@ app.use((error, req, res, next) => {
 });
 
 // Mongoose connection
-mongoose
-  .connect(process.env.MONGO_CLIENT)
-  .then(() => app.listen(3010))
-  .catch(err => console.log(err));
+const startConnection = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_CLIENT);
+
+    app.listen(process.env.PORT || 3000);
+
+    // ALTERNATIVE: using peronally created private key and certificate
+    // https.createServer({ key, cert }, app).listen(process.env.PORT || 3000);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+startConnection();
+
+// mongoose
+//   .connect(process.env.MONGO_CLIENT)
+//   .then(() => app.listen(process.env.PORT || 3000))
+//   .catch(err => console.log(err));
